@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
+  xmlns:desktop10="http://schemas.microsoft.com/appx/manifest/desktop/windows10/10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  IgnorableNamespaces="uap uap10 rescap desktop4 desktop5 desktop6 desktop10 com">
+
+  <Identity Name="NewFolderWithSelection"
+    ProcessorArchitecture="x64"
+    Publisher="CN=NewFolderWithSelection"
+    Version="1.0.0.0" />
+
+  <Properties>
+    <PublisherDisplayName>NewFolderWithSelection</PublisherDisplayName>
+    <DisplayName>New Folder With Selection</DisplayName>
+    <Logo>icon.png</Logo>
+    <desktop6:FileSystemWriteVirtualization>disabled</desktop6:FileSystemWriteVirtualization>
+    <desktop6:RegistryWriteVirtualization>disabled</desktop6:RegistryWriteVirtualization>
+  </Properties>
+
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="unvirtualizedResources" />
+  </Capabilities>
+
+  <Applications>
+    <Application
+      Id="NewFolderWithSelection"
+      Executable="rundll32.exe"
+      uap10:RuntimeBehavior="win32App"
+      uap10:TrustLevel="mediumIL">
+      <uap:VisualElements
+        AppListEntry="none"
+        DisplayName="New Folder With Selection"
+        Description="Create a new folder with selected File Explorer items"
+        BackgroundColor="transparent"
+        Square150x150Logo="icon.png"
+        Square44x44Logo="icon.png" />
+      <Extensions>
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="New Folder With Selection">
+              <com:Class Id="E4B97A12-8C4E-4F39-9A2D-6D81C5F2E101" Path="NewFolderWithSelection.dll" ThreadingModel="STA" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop10:ItemType Type="*">
+              <desktop10:Verb Id="NewFolderWithSelection" Clsid="E4B97A12-8C4E-4F39-9A2D-6D81C5F2E101" />
+            </desktop10:ItemType>
+            <desktop10:ItemType Type="Directory">
+              <desktop10:Verb Id="NewFolderWithSelection" Clsid="E4B97A12-8C4E-4F39-9A2D-6D81C5F2E101" />
+            </desktop10:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

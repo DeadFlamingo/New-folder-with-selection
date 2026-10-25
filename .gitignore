@@ -1,0 +1,9 @@
+*.obj
+*.pdb
+*.exp
+*.lib
+*.res
+*.ilk
+*.user
+*.zip
+.vs/
